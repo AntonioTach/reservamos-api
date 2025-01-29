@@ -45,6 +45,14 @@ $ pnpm run start:dev
 $ pnpm run start:prod
 ```
 
+## Environment Setup
+
+This project requires an `.env` file to function properly. Make sure to create a `.env` file in the root directory with the necessary environment variables.
+
+You can refer to the `.env.example` file for the structure. Simply copy the contents into a new `.env` file and set the appropriate values for your environment.
+
+### Example `.env`:
+
 ## Run tests
 
 ```bash
