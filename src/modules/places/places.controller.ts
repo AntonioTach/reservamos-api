@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, HttpException, HttpStatus, Param, Query } from '@nestjs/common';
 import { PlacesService } from './places.service';
 import { Places } from 'src/utils/interfaces/places.interface';
 import { CityWeatherDetailsForecast } from 'src/utils/interfaces/weather-forecast.interface';
@@ -11,7 +11,10 @@ export class PlacesController {
   async searchCities(@Query('q') query: string): Promise<CityWeather[]> {
     try {
       if (!query) {
-        return [{ message: 'Query parameter "q" is required' }] as any;
+        throw new HttpException(
+          { message: 'Query parameter "q" is required' },
+          HttpStatus.BAD_REQUEST,
+        );
       }
       const cities = await this.placesService.getCities(query);
       return cities!;
